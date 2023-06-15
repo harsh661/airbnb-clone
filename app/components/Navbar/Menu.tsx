@@ -5,9 +5,10 @@ import Avatar from "../Avatar"
 import MenuItems from "./MenuItems"
 import {LuGlobe} from 'react-icons/lu'
 import {MdMenu} from 'react-icons/md'
+import useRegisterModal from "@/app/hooks/useRegisterModal"
 
 const Menu = () => {
-
+  const registerModal = useRegisterModal()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
@@ -37,7 +38,7 @@ const Menu = () => {
       {isOpen && (
         <div className="absolute right-0 top-14 rounded-md card-shadow bg-white flex flex-col py-2">
             <MenuItems 
-              onClick={() => {}}
+              onClick={registerModal.onOpen}
               label="Sign up"
             />
             <MenuItems 

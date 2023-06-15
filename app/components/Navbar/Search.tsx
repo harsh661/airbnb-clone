@@ -7,7 +7,7 @@ const Search = () => {
     <div className="flex items-center justify-center w-full pl-0 text-sm phone:pl-5 small:pl-0">
       <div className="flex justify-between w-full phone:w-max items-center p-2 border border-border-gray rounded-full shadow-sm hover:shadow-md">
         <span className="phone:hidden text-light-gray">
-          <IoSearch />
+          <IoSearch size={20}/>
         </span>
         <span className="px-4 overflow-hidden font-bold whitespace-nowrap cursor-pointer">
           Anywhere

@@ -24,6 +24,15 @@ module.exports = {
         'medium': '1128px',
         'small': '950px',
         'phone': '744px'
+      },
+      animation: {
+        'entrance': 'slideUp 0.5s ease 0s 1 normal forwards;'
+      },
+      keyframes: {
+        'slideUp': {
+          '0%': {'opacity': 0, 'transform': 'translateY(250px)'},
+          '100%': {'opacity': 1, 'transform': 'translateY(0)'}
+        }
       }
     },
   },

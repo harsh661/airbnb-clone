@@ -1,9 +1,10 @@
 import './globals.css'
 import { Nunito } from 'next/font/google'
 import Navbar from './components/Navbar/Navbar'
-import Modal from './components/Modals/Modal'
+import RegisterModal from './components/Modals/RegisterModal'
+import ToastProvider from './providers/ToastProvider'
 
-const figtree = Nunito({ subsets: ['latin'] })
+const nunito = Nunito({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Holiday Homes & Apartment Rentals - Airbnb - Airbnb',
@@ -17,8 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={figtree.className}>
-        {/* <Modal label='Log in or Sign up'/> */}
+      <body className={nunito.className}>
+        <ToastProvider />
+        <RegisterModal />
         <Navbar />
         {children}
       </body>
