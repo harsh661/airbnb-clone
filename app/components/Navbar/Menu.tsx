@@ -6,9 +6,11 @@ import MenuItems from "./MenuItems"
 import {LuGlobe} from 'react-icons/lu'
 import {MdMenu} from 'react-icons/md'
 import useRegisterModal from "@/app/hooks/useRegisterModal"
+import useLoginModal from "@/app/hooks/useLoginModal"
 
 const Menu = () => {
   const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
@@ -42,7 +44,7 @@ const Menu = () => {
               label="Sign up"
             />
             <MenuItems 
-              onClick={() => {}}
+              onClick={loginModal.onOpen}
               label="Log in"
               border={true}
             />
