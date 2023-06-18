@@ -1,20 +1,26 @@
-'use client'
+"use client"
 
 import { useCallback, useState } from "react"
 import Avatar from "../Avatar"
 import MenuItems from "./MenuItems"
-import {LuGlobe} from 'react-icons/lu'
-import {MdMenu} from 'react-icons/md'
+import { LuGlobe } from "react-icons/lu"
+import { MdMenu } from "react-icons/md"
 import useRegisterModal from "@/app/hooks/useRegisterModal"
 import useLoginModal from "@/app/hooks/useLoginModal"
+import { User } from "@prisma/client"
+import { signOut } from "next-auth/react"
 
-const Menu = () => {
+interface MenuProps {
+  currentUser?: User | null
+}
+
+const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
-    setIsOpen(prev => !prev)
+    setIsOpen((prev) => !prev)
   }, [])
 
   return (
@@ -25,37 +31,51 @@ const Menu = () => {
 
       <span className="p-3 rounded-full hover:bg-hover-gray">
         {/* Globe icon */}
-        <LuGlobe size={16}/>
+        <LuGlobe size={16} />
       </span>
 
-      <div onClick={toggleOpen} className="flex items-center gap-2 px-2 py-1 rounded-full border border-border-gray shadow-sm hover:shadow-md">
+      <div
+        onClick={toggleOpen}
+        className="flex items-center gap-2 px-2 py-1 rounded-full border border-border-gray shadow-sm hover:shadow-md"
+      >
         {/* Hamburger icon */}
-        <MdMenu size={20}/>
+        <MdMenu size={20} />
 
         {/* User icon */}
         <Avatar />
-        
       </div>
 
       {isOpen && (
         <div className="absolute right-0 top-14 rounded-md card-shadow bg-white flex flex-col py-2">
-            <MenuItems 
-              onClick={registerModal.onOpen}
-              label="Sign up"
-            />
-            <MenuItems 
-              onClick={loginModal.onOpen}
-              label="Log in"
-              border={true}
-            />
-            <MenuItems 
-              onClick={() => {}}
-              label="Airbnb your home"
-            />
-            <MenuItems 
-              onClick={() => {}}
-              label="Help"
-            />
+          {currentUser ? (
+            <>
+              <MenuItems onClick={() => {}} label="My properties" bold />
+              <MenuItems onClick={() => {}} label="My Reservations" bold />
+              <MenuItems onClick={() => {}} label="Trips" bold />
+              <MenuItems
+                onClick={() => {}}
+                label="Wishlist"
+                border={true}
+                bold
+              />
+              <MenuItems onClick={() => {}} label="Airbnb your home" />
+              <MenuItems onClick={() => {}} label="Account" border />
+              <MenuItems onClick={() => {}} label="Help" />
+              <MenuItems onClick={() => signOut()} label="Logout" />
+            </>
+          ) : (
+            <>
+              <MenuItems onClick={registerModal.onOpen} label="Sign up" bold />
+              <MenuItems
+                onClick={loginModal.onOpen}
+                label="Log in"
+                border
+                bold
+              />
+              <MenuItems onClick={() => {}} label="Airbnb your home" />
+              <MenuItems onClick={() => {}} label="Help" />
+            </>
+          )}
         </div>
       )}
     </div>
