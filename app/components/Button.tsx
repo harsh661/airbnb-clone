@@ -9,7 +9,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ text, onClick, outline, icon }) => {
   return (
-    <div
+    <button
       onClick={onClick}
       className={`relative w-full font-bold rounded-md cursor-pointer p-3 flex items-center justify-center ${
         outline
@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, outline, icon }) => {
       {text}
 
       {icon && <div className="absolute left-6">{icon}</div>}
-    </div>
+    </button>
   )
 }
 
