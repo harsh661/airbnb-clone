@@ -7,11 +7,11 @@ import { LuGlobe } from "react-icons/lu"
 import { MdMenu } from "react-icons/md"
 import useRegisterModal from "@/app/hooks/useRegisterModal"
 import useLoginModal from "@/app/hooks/useLoginModal"
-import { User } from "@prisma/client"
 import { signOut } from "next-auth/react"
+import { SafeUser } from "@/app/types"
 
 interface MenuProps {
-  currentUser?: User | null
+  currentUser?: SafeUser | null
 }
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {

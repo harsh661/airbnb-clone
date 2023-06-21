@@ -3,10 +3,10 @@ import airbnb_full from "../../../public/icons/airbnb_full.svg"
 import airbnb from "../../../public/icons/airbnb.svg"
 import Search from "./Search"
 import Menu from "./Menu"
-import { User } from "@prisma/client"
+import { SafeUser } from "@/app/types"
 
 interface NavbarProps {
-  currentUser?: User | null
+  currentUser?: SafeUser | null
 }
 
 const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
