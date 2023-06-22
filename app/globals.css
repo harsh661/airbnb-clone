@@ -7,3 +7,13 @@
   -moz-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, .15);
   box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, .15);
 }
+
+.no_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no_scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

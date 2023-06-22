@@ -4,6 +4,7 @@ import airbnb from "../../../public/icons/airbnb.svg"
 import Search from "./Search"
 import Menu from "./Menu"
 import { SafeUser } from "@/app/types"
+import CategoriesContainer from "./categories/CategoriesContainer"
 
 interface NavbarProps {
   currentUser?: SafeUser | null
@@ -11,6 +12,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
   return (
+    <>
     <nav className="phone:border-b flex items-center justify-center px-5 phone:px-10 large:px-20">
       <div className="w-full flex items-center py-4">
         {/* Logo section */}
@@ -39,6 +41,8 @@ const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
 
       </div>
     </nav>
+    <CategoriesContainer />
+    </>
   )
 }
 
