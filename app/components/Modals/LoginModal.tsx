@@ -12,6 +12,7 @@ import axios from 'axios'
 import { redirect } from 'next/dist/server/api-utils'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import Heading from '../Heading'
 
 const LoginModal = () => {
   const loginModal = useLoginModal()
@@ -19,8 +20,7 @@ const LoginModal = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const submitHandler = (e: any) => {
-    e.preventDefault()
+  const submitHandler = () => {
     
     signIn('credentials', {
       email, password,
@@ -42,11 +42,10 @@ const LoginModal = () => {
 
   const loginBody = (
       <div className="p-5">
-        <h1 className="text-2xl font-bold py-5">Welcome to Airbnb</h1>
-        <form onSubmit={submitHandler} className="flex flex-col gap-5 border-b pb-10">
+        <Heading title='Welcome to Airbnb'/>
+        <form className="flex flex-col gap-5 border-b pb-10">
           <Input onChange={setEmail} value={email} type="email" placeholder="Email" />
           <Input onChange={setPassword} value={password} type="password" placeholder="Password" />
-          <Button text="Continue" />
         </form>
       </div>
     )
@@ -73,6 +72,8 @@ const LoginModal = () => {
       isOpen={loginModal.isOpen}
       label="Log in"
       body={loginBody}
+      buttonLabel='Continue'
+      onSubmit={submitHandler}
       footer={loginFooter}
       close={loginModal.onClose}
     />

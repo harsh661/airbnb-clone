@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import airbnb_full from "../../../public/icons/airbnb_full.svg"
 import airbnb from "../../../public/icons/airbnb.svg"

@@ -9,6 +9,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModal"
 import useLoginModal from "@/app/hooks/useLoginModal"
 import { signOut } from "next-auth/react"
 import { SafeUser } from "@/app/types"
+import useRentModal from "@/app/hooks/useRentModal"
 
 interface MenuProps {
   currentUser?: SafeUser | null
@@ -17,15 +18,24 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
+  const rentModal = useRentModal()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev)
   }, [])
 
+  const toggleRent = useCallback(() => {
+    if (!currentUser) {
+      return registerModal.onOpen()
+    }
+
+    rentModal.onOpen()
+  },[currentUser, registerModal]) 
+
   return (
     <div className="w-full hidden phone:flex items-center justify-end text-sm gap-2 relative">
-      <div className="font-bold whitespace-nowrap text-dark-gray p-3 hover:bg-hover-gray rounded-full cursor-pointer">
+      <div onClick={toggleRent} className="font-bold whitespace-nowrap text-dark-gray p-3 hover:bg-hover-gray rounded-full cursor-pointer">
         Airbnb your home
       </div>
 
@@ -58,7 +68,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                 border={true}
                 bold
               />
-              <MenuItems onClick={() => {}} label="Airbnb your home" />
+              <MenuItems onClick={rentModal.onOpen} label="Airbnb your home" />
               <MenuItems onClick={() => {}} label="Account" border />
               <MenuItems onClick={() => {}} label="Help" />
               <MenuItems onClick={() => signOut()} label="Logout" />
@@ -72,7 +82,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                 border
                 bold
               />
-              <MenuItems onClick={() => {}} label="Airbnb your home" />
+              <MenuItems onClick={toggleRent} label="Airbnb your home" />
               <MenuItems onClick={() => {}} label="Help" />
             </>
           )}

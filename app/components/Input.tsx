@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({
       value={value}
       onChange={handleChange}
       placeholder={placeholder}
-      className="px-3 py-4 rounded-md border border-light-gray"
+      className="px-3 py-4 rounded-md border border-light-gray w-full"
     />
   )
 }
