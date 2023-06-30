@@ -33,10 +33,10 @@ const UploadImage: React.FC<UploadImageProps> = ({ value, onChange }) => {
         return (
           <div
             onClick={() => open?.()}
-            className="flex flex-col items-center gap-2 h-96 border border-light-gray border-dashed relative"
+            className="flex flex-col items-center justify-center gap-2 h-96 border border-light-gray border-dashed relative"
           >
             <IoImagesOutline size={30} />
-            <h2 className="text-lg font-semibold">Drag your photos here</h2>
+            <h2 className="text-lg font-semibold">Add your photos here</h2>
 
             {value && (
               <div className="absolute inset-0 w-full h-full">

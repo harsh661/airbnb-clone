@@ -10,6 +10,9 @@ import Input from "../inputs/Input"
 import CountryInput, { CountrySelectValue } from "../inputs/CountryInput"
 import Counter from "../inputs/Counter"
 import UploadImage from "../inputs/UploadImage"
+import axios from "axios"
+import { toast } from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 enum STEPS {
   CATEGORY = 0,
@@ -21,6 +24,7 @@ enum STEPS {
 }
 
 const RentModal = () => {
+  const router = useRouter()
   const rentModal = useRentModal()
   const [step, setStep] = useState(STEPS.CATEGORY)
 
@@ -29,11 +33,44 @@ const RentModal = () => {
   const [guests, setGuests] = useState<number>(4)
   const [rooms, setRooms] = useState<number>(1)
   const [bathrooms, setBathrooms] = useState<number>(1)
-  const [image, setImage] = useState<string>('')
+  const [image, setImage] = useState<string>("")
+  const [title, setTitle] = useState<string>("")
+  const [description, setDescription] = useState<string>("")
+  const [price, setPrice] = useState<number>(99)
+
+  const data = {
+    title,
+    description,
+    imageSrc: image,
+    category: selectedCategory,
+    roomCount: rooms,
+    bathroomCount: bathrooms,
+    guestCount: guests,
+    location: selectedCountry,
+    price
+  }
 
   // Move a step up or down
   const nextStep = () => {
-    setStep((prev) => prev + 1)
+    if(step !== STEPS.PRICE) {
+      setStep((prev) => prev + 1)
+      return
+    }
+    console.log(data)
+    axios.post('/api/listings', data)
+      .then(() => {
+        toast.success("Listing is published")
+        router.refresh()
+        setStep(STEPS.CATEGORY)
+        rentModal.onClose()
+      })
+      .catch((e) => {
+        console.log(e)
+        toast.error("Something went wrong")
+      })
+      .finally(() => {
+        rentModal.onClose()
+      })
   }
   const prevStep = () => {
     setStep((prev) => prev - 1)
@@ -117,9 +154,48 @@ const RentModal = () => {
       <div className="p-5">
         <Heading
           title="Add some photos of your house"
-          subtitle="You'll need 5 photos to get started." 
+          subtitle="Show what your place looks like."
         />
-        <UploadImage value={image} onChange={setImage}/>
+        <UploadImage value={image} onChange={setImage} />
+      </div>
+    )
+  }
+
+  // Content for description
+  if (step === STEPS.DESC) {
+    bodyContent = (
+      <div className="p-5">
+        <Heading
+          title="How would you describe your place?"
+          subtitle="Short and sweet works the best."
+        />
+        <div className="flex flex-col gap-10">
+          <Input placeholder="Title" value={title} onChange={setTitle} />
+          <Input
+            placeholder="Description"
+            value={description}
+            onChange={setDescription}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  // Content for price input
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className="p-5">
+        <Heading
+          title="Now, set a price for your place"
+          subtitle="How much do you charge per night?"
+        />
+        <Input
+          type="number"
+          placeholder="Price"
+          value={price}
+          onChange={setPrice}
+          price
+        />
       </div>
     )
   }
