@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useMemo } from "react"
+import { ChangeEvent } from "react"
 
 interface InputProps {
   type: string

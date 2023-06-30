@@ -1,11 +1,11 @@
 import './globals.css'
 import { Nunito } from 'next/font/google'
-import Navbar from './components/Navbar/Navbar'
-import RegisterModal from './components/Modals/RegisterModal'
+import Navbar from './components/navbar/Navbar'
+import RegisterModal from './components/modals/RegisterModal'
 import ToastProvider from './providers/ToastProvider'
-import LoginModal from './components/Modals/LoginModal'
+import LoginModal from './components/modals/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
-import RentModal from './components/Modals/RentModal'
+import RentModal from './components/modals/RentModal'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
