@@ -204,7 +204,7 @@ const RentModal = () => {
     <Modal
       isOpen={rentModal.isOpen}
       close={rentModal.onClose}
-      label="Airbnb you home"
+      label="Airbnb your home"
       buttonLabel={buttonLabel}
       buttonColored
       onSubmit={nextStep}

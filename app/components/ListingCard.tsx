@@ -10,22 +10,23 @@ const ListingCard: React.FC<ListingCardProps> = ({ data }) => {
   const { getCountry } = useGetCountries()
   const location = getCountry(data.locationValue)
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2">
       <Image
         alt={data.title}
         src={data.imageSrc}
         width={800}
         height={800}
-        className="rounded-xl w-full h-full aspect-square"
+        className="rounded-xl w-full h-full aspect-square object-cover"
       />
-      <div>
-        <h3 className="font-semibold">{`${location?.label}, ${location?.region}`}</h3>
+
+      <div className="flex flex-col">
+        <h3 className="font-bold">{`${location?.label}, ${location?.region}`}</h3>
+        <span className="text-light-gray">{data.createdAt.toISOString()}</span>
       </div>
 
-      <div className="flex items-center gap-1">
-        <span className="font-semibold">₹ {data.price} </span>
-        <span>night</span>
-      </div>
+      <span>
+        <b>{`₹ ${data.price}`}</b> night
+      </span>
     </div>
   )
 }

@@ -27,7 +27,7 @@ const CountryInput: React.FC<CountryInputProps> = ({
         <Select 
             placeholder="Enter your address"
             isClearable
-            options={getAll()}
+            options={getAll()} // Add data as array
             value={value}
             onChange={(value)=>onChange(value as CountrySelectValue)}
             formatOptionLabel={(option: any) => (
