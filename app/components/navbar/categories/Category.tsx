@@ -12,11 +12,12 @@ const Category: React.FC<CategoryProps> = ({
     selected
 }) => {
   return (
-    <div className={`${selected ? 'text-dark-gray': 'text-light-gray'} hover:text-dark-gray cursor-pointer flex flex-col gap-2 items-center pb-3 phone:py-3`}>
+    <div className={`${selected ? 'text-dark-gray': 'text-light-gray'} relative hover:text-dark-gray cursor-pointer flex flex-col gap-2 items-center pb-3 phone:py-3`}>
         <Icon size={25} />
         <div className="font-medium text-xs phone:text-sm whitespace-nowrap">
           {label}
         </div>
+        <span className="absolute w-full h-[2px] bg-dark-gray bottom-0"></span>
     </div>
   )
 }

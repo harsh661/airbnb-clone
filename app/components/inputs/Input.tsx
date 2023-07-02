@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className="relative flex items-center">
       {price && (
-        <span className="absolute left-3 font-semibold text-xl">$</span>
+        <span className="absolute left-3 font-semibold text-xl">₹</span>
       )}
       <input
         type={type}

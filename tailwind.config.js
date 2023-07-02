@@ -20,6 +20,7 @@ module.exports = {
         'accent-pink': '#FF385C',
       },
       screens: {
+        'largest': '1880px',
         'large': '1440px',
         'medium': '1128px',
         'small': '950px',

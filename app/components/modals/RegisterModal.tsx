@@ -10,6 +10,7 @@ import { useState } from "react"
 import axios from 'axios'
 import { toast } from "react-hot-toast"
 import Heading from "../Heading"
+import { signIn } from "next-auth/react"
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal()
@@ -49,6 +50,7 @@ const RegisterModal = () => {
             icon={<FcGoogle size={20} />}
           />
           <Button
+            onClick={() => signIn('github')}
             text="Continue with Github"
             outline
             icon={<AiFillGithub size={20} />}
