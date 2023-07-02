@@ -31,6 +31,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
     }
 
     rentModal.onOpen()
+    toggleOpen()
   },[currentUser, registerModal]) 
 
   return (
@@ -56,7 +57,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
       </div>
 
       {isOpen && (
-        <div className="absolute right-0 top-14 rounded-md card-shadow bg-white flex flex-col py-2">
+        <div className="absolute right-0 top-14 rounded-md card-shadow bg-white flex flex-col py-2 z-50">
           {currentUser ? (
             <>
               <MenuItems onClick={() => {}} label="My properties" bold />
@@ -68,7 +69,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
                 border={true}
                 bold
               />
-              <MenuItems onClick={rentModal.onOpen} label="Airbnb your home" />
+              <MenuItems onClick={toggleRent} label="Airbnb your home" />
               <MenuItems onClick={() => {}} label="Account" border />
               <MenuItems onClick={() => {}} label="Help" />
               <MenuItems onClick={() => signOut()} label="Logout" />

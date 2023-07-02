@@ -7,6 +7,7 @@ import Search from "./Search"
 import Menu from "./Menu"
 import { SafeUser } from "@/app/types"
 import CategoriesContainer from "./categories/CategoriesContainer"
+import BottomNav from "./BottomNav"
 
 interface NavbarProps {
   currentUser?: SafeUser | null
@@ -15,7 +16,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
   return (
     <>
-    <nav className="phone:border-b flex items-center justify-center px-5 phone:px-10 large:px-20">
+    <nav className="phone:border-b flex items-center justify-center px-5 phone:px-10 large:px-20 z-50">
       <div className="w-full flex items-center py-4">
         {/* Logo section */}
         <div className="w-10 small:w-full hidden phone:block">
@@ -44,6 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
       </div>
     </nav>
     <CategoriesContainer />
+    <BottomNav currentUser={currentUser}/>
     </>
   )
 }

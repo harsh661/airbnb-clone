@@ -17,7 +17,7 @@ const Category: React.FC<CategoryProps> = ({
         <div className="font-medium text-xs phone:text-sm whitespace-nowrap">
           {label}
         </div>
-        <span className="absolute w-full h-[2px] bg-dark-gray bottom-0"></span>
+        {selected && <span className="absolute w-full h-[2px] bg-dark-gray bottom-0"></span>}
     </div>
   )
 }

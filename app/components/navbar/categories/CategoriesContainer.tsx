@@ -85,7 +85,7 @@ const CategoriesContainer = () => {
             key={category.label}
             label={category.label}
             icon={category.icon}
-            selected={true}
+            selected={isSelected}
           />
         ))}
       </div>

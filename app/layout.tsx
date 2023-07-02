@@ -6,7 +6,6 @@ import ToastProvider from "./providers/ToastProvider"
 import LoginModal from "./components/modals/LoginModal"
 import getCurrentUser from "./actions/getCurrentUser"
 import RentModal from "./components/modals/RentModal"
-import { SafeUser } from "./types"
 import ClientOnly from "./components/ClientOnly"
 
 const nunito = Nunito({ subsets: ["latin"] })
