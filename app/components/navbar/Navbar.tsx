@@ -8,12 +8,19 @@ import Menu from "./Menu"
 import { SafeUser } from "@/app/types"
 import CategoriesContainer from "./categories/CategoriesContainer"
 import BottomNav from "./BottomNav"
+import { usePathname } from "next/navigation"
 
 interface NavbarProps {
   currentUser?: SafeUser | null
 }
 
 const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
+  const pathname = usePathname()
+
+  if(pathname !== '/') {
+    return
+  }
+
   return (
     <>
     <nav className="phone:border-b flex items-center justify-center px-5 phone:px-10 large:px-20 z-50">

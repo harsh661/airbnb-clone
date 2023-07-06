@@ -7,6 +7,7 @@ import { HiOutlineUserCircle } from "react-icons/hi"
 import useLoginModal from "@/app/hooks/useLoginModal"
 import Avatar from "../Avatar"
 import { FaAirbnb } from "react-icons/fa"
+import Link from "next/link"
 
 interface BottomNavProps {
   currentUser: SafeUser | null | undefined
@@ -20,10 +21,10 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentUser }) => {
         <IoSearchSharp size={25} />
         Explore
       </span>
-      <span className="flex flex-col items-center text-xs text-light-gray font-semibold">
+      <Link href={'/wishlist'} className="flex flex-col items-center text-xs text-light-gray font-semibold">
         <AiOutlineHeart size={25} />
         Whishlists
-      </span>
+      </Link>
       {currentUser ? (
         <>
           <span className="flex flex-col items-center text-xs text-light-gray font-semibold">

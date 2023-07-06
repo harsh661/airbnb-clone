@@ -3,7 +3,6 @@ import { SafeUser } from "../types";
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import LoginModal from "../components/modals/LoginModal";
 import useLoginModal from "./useLoginModal";
 
 interface IUseWishlist {

@@ -1,5 +1,5 @@
 import getCurrentUser from "./actions/getCurrentUser"
-import getListings, { getSpecificListings } from "./actions/getListings"
+import getListings from "./actions/getListings"
 import ClientOnly from "./components/ClientOnly"
 import ListingCard from "./components/ListingCard"
 import PriceSwitch from "./components/inputs/PriceSwitch"
