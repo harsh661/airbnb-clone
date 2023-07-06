@@ -3,6 +3,8 @@ import { SafeUser } from "../types";
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import LoginModal from "../components/modals/LoginModal";
+import useLoginModal from "./useLoginModal";
 
 interface IUseWishlist {
     listingId: string
@@ -13,12 +15,18 @@ const useWishlist = ({listingId, currentUser}: IUseWishlist) => {
 
     const router = useRouter()
 
+    const loginModal = useLoginModal()
+
     const isWishlisted = useMemo(()=>{
         return currentUser?.favoriteIds.includes(listingId)
     }, [currentUser, listingId])
 
     const toggleWishlist = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
+
+        if (!currentUser) {
+            return loginModal.onOpen()
+        }
 
         try {
             if(isWishlisted) {
