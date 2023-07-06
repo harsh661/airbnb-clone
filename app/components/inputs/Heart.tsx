@@ -1,3 +1,6 @@
+'use client'
+
+import useWishlist from '@/app/hooks/useWishlist'
 import { SafeUser } from '@/app/types'
 import React from 'react'
 import {FiHeart} from 'react-icons/fi'
@@ -12,9 +15,10 @@ const Heart: React.FC<HeartProps> = ({
     currentUser
 }) => {
 
-    const isWishlisted = false
+  const {isWishlisted, toggleWishlist} = useWishlist({currentUser, listingId})
+
   return (
-    <div className='absolute right-4 top-4 text-white'>
+    <div onClick={toggleWishlist} className='absolute right-4 top-4 text-white cursor-pointer'>
         <FiHeart size={25} className={isWishlisted ? 'fill-red-500': 'fill-black/30'}/>
     </div>
   )
