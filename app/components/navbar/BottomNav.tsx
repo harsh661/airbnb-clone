@@ -8,6 +8,7 @@ import useLoginModal from "@/app/hooks/useLoginModal"
 import Avatar from "../Avatar"
 import { FaAirbnb } from "react-icons/fa"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 interface BottomNavProps {
   currentUser: SafeUser | null | undefined
@@ -15,12 +16,14 @@ interface BottomNavProps {
 
 const BottomNav: React.FC<BottomNavProps> = ({ currentUser }) => {
   const loginModal = useLoginModal()
+  const pathname = usePathname()
+
   return (
     <div className="z-30 phone:hidden bg-white border-t py-3 px-12 w-screen flex items-center justify-between fixed bottom-0">
-      <span className="flex flex-col items-center text-xs text-light-gray font-semibold">
+      <Link href={'/'} className="flex flex-col items-center text-xs text-light-gray font-semibold">
         <IoSearchSharp size={25} />
         Explore
-      </span>
+      </Link>
       <Link href={'/wishlist'} className="flex flex-col items-center text-xs text-light-gray font-semibold">
         <AiOutlineHeart size={25} />
         Whishlists

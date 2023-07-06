@@ -6,6 +6,7 @@ import getWishlist from "../actions/getWishlist"
 import Heading from "../components/Heading"
 import { IoArrowBackOutline } from "react-icons/io5"
 import Link from "next/link"
+import BottomNav from "../components/navbar/BottomNav"
 
 export default async function Wishlist() {
   const currentUser = await getCurrentUser()
@@ -13,7 +14,10 @@ export default async function Wishlist() {
 
   return (
     <ClientOnly>
-      <Link href={'/'} className="rounded-full p-3 m-1 hover:bg-hover-gray absolute">
+      <Link
+        href={"/"}
+        className="rounded-full p-3 m-1 hover:bg-hover-gray absolute"
+      >
         <IoArrowBackOutline size={20} />
       </Link>
       <main className="pb-20 pt-10 px-5 phone:px-10 large:px-20">
@@ -28,6 +32,7 @@ export default async function Wishlist() {
           ))}
         </div>
       </main>
+      <BottomNav currentUser={currentUser} />
     </ClientOnly>
   )
 }
