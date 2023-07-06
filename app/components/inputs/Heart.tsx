@@ -18,7 +18,7 @@ const Heart: React.FC<HeartProps> = ({
   const {isWishlisted, toggleWishlist} = useWishlist({currentUser, listingId})
 
   return (
-    <div onClick={toggleWishlist} className='absolute right-4 top-4 text-white cursor-pointer'>
+    <div onClick={toggleWishlist} className='absolute right-0 top-0 text-white cursor-pointer p-3'>
         <FiHeart size={25} className={isWishlisted ? 'fill-red-500': 'fill-black/30'}/>
     </div>
   )
