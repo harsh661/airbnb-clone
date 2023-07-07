@@ -55,7 +55,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         <MdMenu size={20} />
 
         {/* User icon */}
-        <Avatar />
+        <Avatar src={currentUser?.image}/>
       </div>
 
       {isOpen && (

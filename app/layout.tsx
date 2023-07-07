@@ -8,7 +8,7 @@ import getCurrentUser from "./actions/getCurrentUser"
 import RentModal from "./components/modals/RentModal"
 import ClientOnly from "./components/ClientOnly"
 
-const nunito = Nunito({ subsets: ["latin"] })
+// const nunito = Nunito({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Holiday Homes & Apartment Rentals - Airbnb - Airbnb",
@@ -23,7 +23,7 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser()
   return (
     <html lang="en">
-      <body className={nunito.className}>
+      <body>
         <ClientOnly>
           <ToastProvider />
           <RegisterModal />

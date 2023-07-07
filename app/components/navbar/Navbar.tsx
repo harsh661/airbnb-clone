@@ -17,13 +17,13 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
   const pathname = usePathname()
 
-  if(pathname !== '/') {
+  if(pathname == '/wishlist') {
     return
   }
 
   return (
     <>
-    <nav className="phone:border-b flex items-center justify-center px-5 phone:px-10 large:px-20 z-50">
+    <nav className={`${pathname !== '/' && 'max-w-6xl mx-auto large:px-10'} phone:border-b flex items-center justify-center px-5 phone:px-10 large:px-20 z-50`}>
       <div className="w-full flex items-center py-4">
         {/* Logo section */}
         <div className="w-10 small:w-full hidden phone:block">
@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
 
       </div>
     </nav>
-    <CategoriesContainer />
+    {pathname === '/' && <CategoriesContainer />}
     <BottomNav currentUser={currentUser}/>
     </>
   )

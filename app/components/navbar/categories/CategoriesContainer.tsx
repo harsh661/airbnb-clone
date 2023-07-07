@@ -1,3 +1,5 @@
+'use client'
+
 import {
   MdOutlineHomeWork,
   MdCabin,
@@ -7,7 +9,7 @@ import {
   MdOutlinePalette,
 } from "react-icons/md"
 import { TbBeach } from "react-icons/tb"
-import { FaSwimmingPool } from "react-icons/fa"
+import {BsWater} from 'react-icons/bs'
 import { TbUfo } from "react-icons/tb"
 import { HiOutlineHomeModern, HiOutlineFire } from "react-icons/hi2"
 import { IoSnowOutline, IoBedOutline } from "react-icons/io5"
@@ -38,7 +40,7 @@ export const categories = [
   },
   {
     label: "Amazing Pools",
-    icon: FaSwimmingPool,
+    icon: BsWater,
   },
   {
     label: "Historical homes",

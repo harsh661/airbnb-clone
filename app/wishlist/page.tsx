@@ -1,6 +1,6 @@
 import React from "react"
 import ClientOnly from "../components/ClientOnly"
-import ListingCard from "../components/ListingCard"
+import ListingCard from "../components/listing/ListingCard"
 import getCurrentUser from "../actions/getCurrentUser"
 import getWishlist from "../actions/getWishlist"
 import Heading from "../components/Heading"

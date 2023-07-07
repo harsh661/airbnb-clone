@@ -1,7 +1,7 @@
 import getCurrentUser from "./actions/getCurrentUser"
 import getListings from "./actions/getListings"
 import ClientOnly from "./components/ClientOnly"
-import ListingCard from "./components/ListingCard"
+import ListingCard from "./components/listing/ListingCard"
 import PriceSwitch from "./components/inputs/PriceSwitch"
 
 export default async function Home() {

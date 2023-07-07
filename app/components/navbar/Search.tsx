@@ -8,10 +8,10 @@ const Search = () => {
       <div className="flex flex-row-reverse phone:flex-row justify-between w-full phone:w-max items-center p-2 border border-border-gray rounded-full shadow-md phone:shadow-sm hover:shadow-md">
         {/* For bigger screen */}
         <div className="w-auto phone:flex items-center justify-between hidden">
-          <span className="px-4 overflow-hidden font-bold whitespace-nowrap cursor-pointer">
+          <span className="px-4 overflow-hidden font-semibold whitespace-nowrap cursor-pointer">
             Anywhere
           </span>
-          <span className="px-4 overflow-hidden font-bold whitespace-nowrap cursor-pointer">
+          <span className="px-4 overflow-hidden font-semibold whitespace-nowrap cursor-pointer">
             Any week
           </span>
           <span className="px-4 overflow-hidden text-light-gray whitespace-nowrap cursor-pointer">

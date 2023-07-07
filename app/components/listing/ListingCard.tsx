@@ -1,12 +1,11 @@
 import Image from "next/image"
-import useGetCountries from "../hooks/useGetCountries"
-import { Listing } from "@prisma/client"
+import useGetCountries from "../../hooks/useGetCountries"
 import Link from "next/link"
 import Heart from "@/app/components/inputs/Heart"
-import { SafeUser } from "../types"
+import { SafeListing, SafeUser } from "../../types"
 
 interface ListingCardProps {
-  data: Listing
+  data: SafeListing
   currentUser: SafeUser | null
 }
 
@@ -28,12 +27,12 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, currentUser }) => {
       </Link>
 
       <div className="flex flex-col">
-        <h3 className="font-bold">{`${location?.label}, ${location?.region}`}</h3>
+        <h3 className="font-semibold">{`${location?.label}, ${location?.region}`}</h3>
         <span className="text-light-gray">{data.category}</span>
       </div>
 
       <span>
-        <b>{`₹ ${data.price}`}</b> night
+        <span className="font-semibold">{`₹ ${data.price}`}</span> night
       </span>
     </div>
   )
