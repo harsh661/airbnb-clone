@@ -8,12 +8,14 @@ import {
   MdOutlineDownhillSkiing,
   MdOutlinePalette,
 } from "react-icons/md"
-import { TbBeach } from "react-icons/tb"
-import {BsWater} from 'react-icons/bs'
+import {PiBoat, PiCactus, PiLighthouse, PiSwimmingPool, PiTree, PiTreePalm} from 'react-icons/pi'
+import { TbBeach, TbChefHat } from "react-icons/tb"
+import {BiDish} from 'react-icons/bi'
 import { TbUfo } from "react-icons/tb"
 import { HiOutlineHomeModern, HiOutlineFire } from "react-icons/hi2"
 import { IoSnowOutline, IoBedOutline } from "react-icons/io5"
 import { SlCup } from "react-icons/sl"
+
 import Category from "./Category"
 import { useState } from "react"
 
@@ -39,11 +41,31 @@ export const categories = [
     icon: TbUfo,
   },
   {
-    label: "Amazing Pools",
-    icon: BsWater,
+    label: "Luxe",
+    icon: BiDish
   },
   {
-    label: "Historical homes",
+    label: "Amazing Pools",
+    icon: PiSwimmingPool,
+  },
+  {
+    label: "Tropical",
+    icon: PiTreePalm
+  },
+  {
+    label: "Castles",
+    icon: MdOutlineCastle,
+  },
+  {
+    label: "Breakfasts",
+    icon: SlCup,
+  },
+  {
+    label: "Towers",
+    icon: PiLighthouse
+  },
+  {
+    label: "Historical",
     icon: MdOutlineHomeWork,
   },
   {
@@ -51,20 +73,20 @@ export const categories = [
     icon: HiOutlineHomeModern,
   },
   {
+    label: "Desert",
+    icon: PiCactus
+  },
+  {
     label: "Trending",
     icon: HiOutlineFire,
   },
   {
-    label: "Castles",
-    icon: MdOutlineCastle,
+    label: "Treehouses",
+    icon: PiTree
   },
   {
     label: "Arctic",
     icon: IoSnowOutline,
-  },
-  {
-    label: "Bed & breakfasts",
-    icon: SlCup,
   },
   {
     label: "Skiing",
@@ -74,6 +96,14 @@ export const categories = [
     label: "Creative spaces",
     icon: MdOutlinePalette,
   },
+  {
+    label: "Boats",
+    icon: PiBoat
+  },
+  {
+    label: "Kitchen",
+    icon: TbChefHat
+  }
 ]
 
 const CategoriesContainer = () => {
