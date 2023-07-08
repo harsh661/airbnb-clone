@@ -26,7 +26,7 @@ const ListingClient: FC<ListingClientProps> = ({ currentUser, listing }) => {
     <ClientOnly>
       <ListingHeader listing={listing} location={location} />
       <div className="phone:px-10 py-10 max-w-6xl mx-auto">
-        <ListingBody user={listing.user} listing={listing} category={category}/>
+        <ListingBody currentUser={currentUser} user={listing.user} listing={listing} category={category}/>
       </div>
     </ClientOnly>
   )

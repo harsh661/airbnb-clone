@@ -6,9 +6,11 @@ import { IconType } from "react-icons"
 import Avatar from "../Avatar"
 import ListingCategory from "./ListingCategory"
 import {BsCalendar4} from 'react-icons/bs'
+import ReservationCard from "../reservations/ReservationCard"
 
 interface ListingBodyProps {
   user: SafeUser
+  currentUser: SafeUser
   listing: SafeListing
   category:
     | {
@@ -18,7 +20,7 @@ interface ListingBodyProps {
     | undefined
 }
 
-const ListingBody: FC<ListingBodyProps> = ({ user, listing, category }) => {
+const ListingBody: FC<ListingBodyProps> = ({ currentUser, user, listing, category }) => {
   return (
     <div className="flex flex-col phone:flex-row gap-5 px-5 phone:px-0 w-full">
       <div className="phone:flex-[3] w-full">
@@ -47,7 +49,9 @@ const ListingBody: FC<ListingBodyProps> = ({ user, listing, category }) => {
           {listing.description}
         </div>
       </div>
-      <div className="phone:flex-[2] w-full border"></div>
+      <div className="phone:flex-[2] w-full pl-10">
+        <ReservationCard listing={listing} currentUser={currentUser}/>
+      </div>
     </div>
   )
 }
