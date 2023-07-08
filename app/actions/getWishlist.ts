@@ -9,7 +9,7 @@ export default async function getWishlist() {
         return []
     }
 
-    const wishlist = prisma.listing.findMany({
+    const wishlist = await prisma.listing.findMany({
         where: {
             id: {
                 in: [...currentUser.favoriteIds]
@@ -17,7 +17,12 @@ export default async function getWishlist() {
         }
     })
 
-    return wishlist
+    const safeWishlist = wishlist.map((item) => ({
+      ...item,
+      createdAt: item.createdAt.toISOString()
+    }))
+
+    return safeWishlist
   } catch (error) {
     console.log(error)
   }
