@@ -41,7 +41,7 @@ export const categories = [
     icon: TbUfo,
   },
   {
-    label: "Luxe",
+    label: "Luxury",
     icon: BiDish
   },
   {
