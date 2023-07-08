@@ -38,7 +38,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
 
   return (
     <div className="w-full hidden phone:flex items-center justify-end text-sm gap-2 relative">
-      <div onClick={toggleRent} className="font-bold whitespace-nowrap text-dark-gray p-3 hover:bg-hover-gray rounded-full cursor-pointer">
+      <div onClick={rentModal.onOpen} className="font-bold whitespace-nowrap text-dark-gray p-3 hover:bg-hover-gray rounded-full cursor-pointer">
         Airbnb your home
       </div>
 
