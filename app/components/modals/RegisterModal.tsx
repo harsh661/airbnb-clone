@@ -23,12 +23,12 @@ const RegisterModal = () => {
     axios.post('/api/signup', {name, email, password})
       .then(()=> {
         registerModal.onClose()
+        toast.success('Account created')
       })
       .catch(err => {
         toast.error('Something went wrong')
       })
   }
-
 
   const signupBody = (
       <div className="p-5">
@@ -45,6 +45,7 @@ const RegisterModal = () => {
       <div className="p-5">
         <div className="flex flex-col gap-5 border-b pb-10">
           <Button
+            onClick={() => signIn('google')}
             text="Continue with Google"
             outline
             icon={<FcGoogle size={20} />}

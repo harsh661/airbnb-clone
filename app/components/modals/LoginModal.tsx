@@ -8,8 +8,6 @@ import { FcGoogle } from "react-icons/fc"
 import { AiFillGithub } from "react-icons/ai"
 import Input from "../inputs/Input"
 import { useState } from "react"
-import axios from 'axios'
-import { redirect } from 'next/dist/server/api-utils'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Heading from '../Heading'
@@ -57,11 +55,13 @@ const LoginModal = () => {
             text="Continue with Google"
             outline
             icon={<FcGoogle size={20} />}
+            onClick={() => signIn('google')}
           />
           <Button
             text="Continue with Github"
             outline
             icon={<AiFillGithub size={20} />}
+            onClick={() => signIn('github')}
           />
         </div>
       </div>
