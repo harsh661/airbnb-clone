@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
 
       </div>
     </nav>
-    {pathname === '/' && <CategoriesContainer />}
+    <CategoriesContainer />
     <BottomNav currentUser={currentUser}/>
     </>
   )

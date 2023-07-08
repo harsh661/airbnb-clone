@@ -4,8 +4,8 @@ import ClientOnly from "./components/ClientOnly"
 import ListingCard from "./components/listing/ListingCard"
 import PriceSwitch from "./components/inputs/PriceSwitch"
 
-export default async function Home() {
-  const listings = await getListings()
+export default async function Home({searchParams}: any) {
+  const listings = await getListings(searchParams)
   const currentUser = await getCurrentUser()
   return (
     <ClientOnly>

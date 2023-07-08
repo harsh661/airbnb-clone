@@ -1,8 +1,28 @@
 import prisma from '@/app/libs/prismadb'
 
-export default async function getListings() {
+export interface Iparams {
+    userId?: string;
+    guestCount?: number;
+    roomCount?: number;
+    bathroomCount?: number;
+    startDate?: string;
+    endDate?: string;
+    locationValue?: string;
+    category?: string;
+}
+
+export default async function getListings( params: Iparams ) {
+    let query: any = {}
+
+    const {category} = params
+
+    if (category) {
+        query.category = category
+    }
+
     try {
         const listings = await prisma.listing.findMany({
+            where: query,
             orderBy: {
                 createdAt: 'desc'
             }
@@ -13,20 +33,7 @@ export default async function getListings() {
             createdAt: listing.createdAt.toISOString(),
           }));
         return safeListings
-    } catch (error: any) {
-        throw new Error(error)
-    }
-}
 
-export async function getSpecificListings(query: string) {
-    try {
-        const listings = await prisma.listing.findMany({
-            where: {
-                category: query
-            }
-        })
-
-        return listings
     } catch (error: any) {
         throw new Error(error)
     }
