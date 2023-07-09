@@ -28,10 +28,12 @@ const Modal: React.FC<ModalProps> = ({
   secondaryAction,
   buttonColored,
 }) => {
+
   if (!isOpen) return null
+  
   return (
     <div className="flex items-center justify-center fixed inset-0 bg-dark-gray/50 z-50">
-      <div className="bg-white card-shadow h-full w-full phone:h-max phone:w-[568px] rounded-lg animate-entrance flex flex-col justify-between">
+      <div className="bg-white card-shadow h-full rounded-lg w-full phone:h-max phone:w-[568px] animate-entrance flex flex-col justify-between">
         <div>
           <header className="font-bold relative flex items-center justify-center p-5 border-b">
             {label}

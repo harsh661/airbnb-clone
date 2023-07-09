@@ -5,7 +5,7 @@ import React, { FC } from "react"
 import { IconType } from "react-icons"
 import Avatar from "../Avatar"
 import ListingCategory from "./ListingCategory"
-import {BsCalendar4} from 'react-icons/bs'
+import {PiCalendarBlank} from 'react-icons/pi'
 import ReservationCard from "../reservations/ReservationCard"
 
 interface ListingBodyProps {
@@ -43,7 +43,7 @@ const ListingBody: FC<ListingBodyProps> = ({ currentUser, user, listing, categor
           {category && (
             <ListingCategory icon={category.icon} label={category.label} />
           )}
-          <ListingCategory icon={BsCalendar4} label="Free cancellation for 48 hours."/>
+          <ListingCategory icon={PiCalendarBlank} label="Free cancellation for 48 hours."/>
         </div>
         <div className="py-5 border-y border-border-gray text-lg text-dark-gray">
           {listing.description}

@@ -1,10 +1,14 @@
 "use client"
 
+import useSearchModal from "@/app/hooks/useSearchModal"
 import { IoSearch } from "react-icons/io5"
 
 const Search = () => {
+
+  const searchModal = useSearchModal()
+
   return (
-    <div className="flex items-center justify-center w-full pl-0 text-sm phone:pl-5 small:pl-0">
+    <div onClick={searchModal.onOpen} className="flex items-center justify-center w-full pl-0 text-sm phone:pl-5 small:pl-0">
       <div className="flex flex-row-reverse phone:flex-row justify-between w-full phone:w-max items-center p-2 border border-border-gray rounded-full shadow-md phone:shadow-sm hover:shadow-md">
         {/* For bigger screen */}
         <div className="w-auto phone:flex items-center justify-between hidden">

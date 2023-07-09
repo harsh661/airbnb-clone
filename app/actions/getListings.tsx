@@ -14,10 +14,23 @@ export interface Iparams {
 export default async function getListings( params: Iparams ) {
     let query: any = {}
 
-    const {category} = params
+    const {category, locationValue, guestCount, roomCount} = params
 
     if (category) {
         query.category = category
+    }
+    if (locationValue) {
+        query.locationValue = locationValue
+    }
+    if (guestCount && guestCount>1) {
+        query.guestCount = {
+            gte: Number(guestCount)
+        }
+    }
+    if (roomCount) {
+        query.roomCount = {
+            gte: Number(roomCount)
+        }
     }
 
     try {

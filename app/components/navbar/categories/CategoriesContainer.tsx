@@ -17,7 +17,6 @@ import { IoSnowOutline, IoBedOutline } from "react-icons/io5"
 import { SlCup } from "react-icons/sl"
 
 import Category from "./Category"
-import { useState } from "react"
 import { usePathname, useSearchParams } from "next/navigation"
 
 export const categories = [
