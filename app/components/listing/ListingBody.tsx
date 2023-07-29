@@ -5,8 +5,9 @@ import React, { FC } from "react"
 import { IconType } from "react-icons"
 import Avatar from "../Avatar"
 import ListingCategory from "./ListingCategory"
-import {PiCalendarBlank} from 'react-icons/pi'
+import { PiCalendarBlank } from "react-icons/pi"
 import ReservationCard from "../reservations/ReservationCard"
+import { Range } from "react-date-range"
 
 interface ListingBodyProps {
   user: SafeUser
@@ -18,9 +19,22 @@ interface ListingBodyProps {
         label: string
       }
     | undefined
+  totalPrice: number
+  onDateChange: (value: any) => void
+  onSubmit: () => void
+  dateRange: Range
 }
 
-const ListingBody: FC<ListingBodyProps> = ({ currentUser, user, listing, category }) => {
+const ListingBody: FC<ListingBodyProps> = ({
+  currentUser,
+  user,
+  listing,
+  category,
+  totalPrice,
+  onDateChange,
+  onSubmit,
+  dateRange,
+}) => {
   return (
     <div className="flex flex-col phone:flex-row gap-5 px-5 phone:px-0 w-full">
       <div className="phone:flex-[3] w-full">
@@ -43,14 +57,24 @@ const ListingBody: FC<ListingBodyProps> = ({ currentUser, user, listing, categor
           {category && (
             <ListingCategory icon={category.icon} label={category.label} />
           )}
-          <ListingCategory icon={PiCalendarBlank} label="Free cancellation for 48 hours."/>
+          <ListingCategory
+            icon={PiCalendarBlank}
+            label="Free cancellation for 48 hours."
+          />
         </div>
         <div className="py-5 border-y border-border-gray text-lg text-dark-gray">
           {listing.description}
         </div>
       </div>
-      <div className="phone:flex-[2] w-full pl-10">
-        <ReservationCard listing={listing} currentUser={currentUser}/>
+      <div className="phone:flex-[2] w-full phone:pl-10 mb-10">
+        <ReservationCard
+          totalPrice={totalPrice}
+          dateRange={dateRange}
+          listing={listing}
+          currentUser={currentUser}
+          onDateChange={onDateChange}
+          onSubmit={onSubmit}
+        />
       </div>
     </div>
   )
