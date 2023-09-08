@@ -8,20 +8,20 @@ import { Range } from "react-date-range"
 
 interface ReservationCardProps {
   listing: SafeListing
-  currentUser: SafeUser
   dateRange: Range,
   totalPrice: number
   onDateChange: (value: Range) => void
   onSubmit: () => void
+  disabledDates: Date[]
 }
 
 const ReservationCard: FC<ReservationCardProps> = ({
   listing,
   dateRange,
-  currentUser,
   totalPrice,
   onDateChange,
-  onSubmit
+  onSubmit,
+  disabledDates
 }) => {
   return (
     <div className="p-5 flex flex-col gap-5 card-shadow border border-border-gray rounded-lg">
@@ -29,7 +29,7 @@ const ReservationCard: FC<ReservationCardProps> = ({
         <span className="text-2xl font-medium">₹{listing.price}</span> night
       </span>
       <div className="flex flex-col rounded-md">
-        <Calendar value={dateRange} onChange={(value) => onDateChange(value.selection)}/>
+        <Calendar value={dateRange} onChange={(value) => onDateChange(value.selection)} disabled={disabledDates}/>
       </div>
       <Button text="Reserve" onClick={onSubmit}/>
       <div className="flex items-center justify-between font-medium">

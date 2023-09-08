@@ -2,8 +2,8 @@
 
 import axios from "axios"
 import { toast } from "react-hot-toast"
-import { differenceInCalendarDays } from "date-fns"
-import { SafeListing, SafeUser } from "@/app/types"
+import { differenceInCalendarDays, eachDayOfInterval } from "date-fns"
+import { SafeListing, SafeResevations, SafeUser } from "@/app/types"
 import ClientOnly from "@/app/components/ClientOnly"
 import ListingBody from "@/app/components/listing/ListingBody"
 import ListingHeader from "@/app/components/listing/ListingHeader"
@@ -19,19 +19,39 @@ const initialRange = {
 }
 
 interface ListingClientProps {
-  currentUser: SafeUser
+  currentUser?: SafeUser | null
   listing: SafeListing & {
     user: SafeUser
   }
+  reservations?: SafeResevations[]
 }
 
-const ListingClient: FC<ListingClientProps> = ({ currentUser, listing }) => {
+const ListingClient: FC<ListingClientProps> = ({
+  currentUser,
+  listing,
+  reservations = [],
+}) => {
   const { getCountry } = useGetCountries()
   const loginModal = useLoginModal()
   const location = getCountry(listing.locationValue)
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category)
   }, [listing.category])
+
+  const disabledDates = useMemo(() => {
+    let dates: Date[] = []
+
+    reservations.forEach((reservation: any) => {
+      const range = eachDayOfInterval({
+        start: new Date(reservation.startDate),
+        end: new Date(reservation.endDate),
+      })
+
+      dates = [...dates, ...range]
+    })
+
+    return dates
+  }, [reservations])
 
   const [totalPrice, setTotalPrice] = useState(listing.price)
   const [dateRange, setDateRange] = useState(initialRange)
@@ -82,6 +102,7 @@ const ListingClient: FC<ListingClientProps> = ({ currentUser, listing }) => {
           user={listing.user}
           listing={listing}
           category={category}
+          disabledDates={disabledDates}
         />
       </div>
     </ClientOnly>

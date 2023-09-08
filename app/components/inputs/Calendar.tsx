@@ -8,11 +8,13 @@ import "react-date-range/dist/theme/default.css"
 interface CalendarProps {
     value: Range
     onChange: (value: RangeKeyDict) => void
+    disabled?: Date[]
 }
 
 const Calendar: React.FC<CalendarProps> = ({
     value,
-    onChange
+    onChange,
+    disabled
 }) => {
   return (
   <DateRange
@@ -23,6 +25,7 @@ const Calendar: React.FC<CalendarProps> = ({
     direction="vertical"
     showDateDisplay={false}
     minDate={new Date()}
+    disabledDates={disabled}
   />
   )
 }

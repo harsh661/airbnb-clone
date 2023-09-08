@@ -11,7 +11,7 @@ import { Range } from "react-date-range"
 
 interface ListingBodyProps {
   user: SafeUser
-  currentUser: SafeUser
+  currentUser?: SafeUser | null
   listing: SafeListing
   category:
     | {
@@ -23,6 +23,7 @@ interface ListingBodyProps {
   onDateChange: (value: any) => void
   onSubmit: () => void
   dateRange: Range
+  disabledDates: Date[]
 }
 
 const ListingBody: FC<ListingBodyProps> = ({
@@ -34,6 +35,7 @@ const ListingBody: FC<ListingBodyProps> = ({
   onDateChange,
   onSubmit,
   dateRange,
+  disabledDates
 }) => {
   return (
     <div className="flex flex-col phone:flex-row gap-5 px-5 phone:px-0 w-full">
@@ -71,9 +73,9 @@ const ListingBody: FC<ListingBodyProps> = ({
           totalPrice={totalPrice}
           dateRange={dateRange}
           listing={listing}
-          currentUser={currentUser}
           onDateChange={onDateChange}
           onSubmit={onSubmit}
+          disabledDates={disabledDates}
         />
       </div>
     </div>
