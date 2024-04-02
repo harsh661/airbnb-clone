@@ -114,7 +114,7 @@ const CategoriesContainer = () => {
   if(pathname !== '/') return
 
   return (
-    <div className="phone:px-10 large:px-20 phone:my-5 w-screen shadow-md phone:shadow-none shadow-light-gray/10 flex items-center">
+    <div className="phone:px-10 large:px-20 phone:my-5 w-full shadow-md phone:shadow-none shadow-light-gray/10 flex items-center">
       <div className="px-5 phone:px-0 flex items-center gap-5 phone:gap-10 w-full no_scrollbar overflow-x-scroll">
         {categories.map((item) => (
           <Category
