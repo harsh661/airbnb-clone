@@ -24,6 +24,7 @@ interface ListingBodyProps {
   onSubmit: () => void
   dateRange: Range
   disabledDates: Date[]
+  loading?: boolean
 }
 
 const ListingBody: FC<ListingBodyProps> = ({
@@ -35,7 +36,8 @@ const ListingBody: FC<ListingBodyProps> = ({
   onDateChange,
   onSubmit,
   dateRange,
-  disabledDates
+  disabledDates,
+  loading
 }) => {
   return (
     <div className="flex flex-col phone:flex-row gap-5 px-5 phone:px-0 w-full">
@@ -76,6 +78,7 @@ const ListingBody: FC<ListingBodyProps> = ({
           onDateChange={onDateChange}
           onSubmit={onSubmit}
           disabledDates={disabledDates}
+          buttonLoading={loading}
         />
       </div>
     </div>

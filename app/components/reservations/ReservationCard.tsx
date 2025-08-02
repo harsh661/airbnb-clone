@@ -1,18 +1,19 @@
-"use client"
+"use client";
 
-import { SafeListing, SafeUser } from "@/app/types"
-import React, { FC } from "react"
-import Button from "../Button"
-import Calendar from "../inputs/Calendar"
-import { Range } from "react-date-range"
+import { SafeListing, SafeUser } from "@/app/types";
+import React, { FC } from "react";
+import Button from "../Button";
+import Calendar from "../inputs/Calendar";
+import { Range } from "react-date-range";
 
 interface ReservationCardProps {
-  listing: SafeListing
-  dateRange: Range,
-  totalPrice: number
-  onDateChange: (value: Range) => void
-  onSubmit: () => void
-  disabledDates: Date[]
+  listing: SafeListing;
+  dateRange: Range;
+  totalPrice: number;
+  onDateChange: (value: Range) => void;
+  onSubmit: () => void;
+  disabledDates: Date[];
+  buttonLoading?: boolean;
 }
 
 const ReservationCard: FC<ReservationCardProps> = ({
@@ -21,7 +22,8 @@ const ReservationCard: FC<ReservationCardProps> = ({
   totalPrice,
   onDateChange,
   onSubmit,
-  disabledDates
+  disabledDates,
+  buttonLoading,
 }) => {
   return (
     <div className="p-5 flex flex-col gap-5 card-shadow border border-border-gray rounded-lg">
@@ -29,15 +31,19 @@ const ReservationCard: FC<ReservationCardProps> = ({
         <span className="text-2xl font-medium">₹{listing.price}</span> night
       </span>
       <div className="flex flex-col rounded-md">
-        <Calendar value={dateRange} onChange={(value) => onDateChange(value.selection)} disabled={disabledDates}/>
+        <Calendar
+          value={dateRange}
+          onChange={(value) => onDateChange(value.selection)}
+          disabled={disabledDates}
+        />
       </div>
-      <Button text="Reserve" onClick={onSubmit}/>
+      <Button loading={buttonLoading} text="Reserve" onClick={onSubmit} />
       <div className="flex items-center justify-between font-medium">
         <span>Total before taxes</span>
         <span>₹{totalPrice}</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ReservationCard
+export default ReservationCard;

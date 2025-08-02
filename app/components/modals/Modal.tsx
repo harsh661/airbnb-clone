@@ -1,19 +1,21 @@
-"use client"
+"use client";
 
-import { MdOutlineClose } from "react-icons/md"
-import Button from "../Button"
+import { MdOutlineClose } from "react-icons/md";
+import Button from "../Button";
+import React, { useRef, useEffect, useCallback } from "react";
 
 interface ModalProps {
-  label: string
-  isOpen: boolean
-  close?: () => void
-  onSubmit?: () => void
-  secondaryAction?: () => void
-  buttonLabel: string
-  secondaryLabel?: string | null
-  buttonColored?: boolean
-  body?: React.ReactElement
-  footer?: React.ReactElement
+  label: string;
+  isOpen: boolean;
+  close?: () => void;
+  onSubmit?: () => void;
+  secondaryAction?: () => void;
+  buttonLabel: string;
+  secondaryLabel?: string | null;
+  buttonColored?: boolean;
+  buttonLoading?: boolean;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -27,12 +29,37 @@ const Modal: React.FC<ModalProps> = ({
   secondaryLabel,
   secondaryAction,
   buttonColored,
+  buttonLoading,
 }) => {
+  const overlayRef = useRef<HTMLDivElement>(null);
 
-  if (!isOpen) return null
-  
+  const handleClickOutside = useCallback(
+    (e: MouseEvent) => {
+      if (overlayRef.current && e.target === overlayRef.current) {
+        close && close();
+      }
+    },
+    [close]
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, handleClickOutside]);
+
+  if (!isOpen) return null;
+
   return (
-    <div className="flex items-center justify-center fixed inset-0 bg-dark-gray/50 z-50">
+    <div
+      ref={overlayRef}
+      className="flex items-center justify-center fixed inset-0 bg-dark-gray/50 z-50"
+    >
       <div className="bg-white card-shadow h-full rounded-lg w-full phone:h-max phone:w-[568px] animate-entrance flex flex-col justify-between">
         <div>
           <header className="font-bold relative flex items-center justify-center p-5 border-b">
@@ -56,12 +83,13 @@ const Modal: React.FC<ModalProps> = ({
             text={buttonLabel}
             onClick={onSubmit}
             colored={buttonColored}
+            loading={buttonLoading}
           />
         </div>
         {footer}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
