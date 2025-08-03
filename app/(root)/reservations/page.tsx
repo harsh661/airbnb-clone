@@ -1,14 +1,16 @@
 import React from "react";
-import ClientOnly from "../components/ClientOnly";
-import getCurrentUser from "../actions/getCurrentUser";
-import getReservations from "../actions/getReservations";
-import Heading from "../components/Heading";
-import BottomNav from "../components/navbar/BottomNav";
-import ReservationInfoCard from "../components/reservations/ReservationInfoCard";
+import ClientOnly from "../../components/ClientOnly";
+import getCurrentUser from "../../actions/getCurrentUser";
+import getReservations from "../../actions/getReservations";
+import Heading from "../../components/Heading";
+import BottomNav from "../../components/navbar/BottomNav";
+import ReservationInfoCard from "../../components/reservations/ReservationInfoCard";
 
 export default async function Reservations() {
   const currentUser = await getCurrentUser();
-  const reservations = await getReservations({ userId: currentUser?.id });
+  if (!currentUser) return null;
+
+  const reservations = await getReservations({ userId: currentUser.id });
 
   return (
     <ClientOnly>

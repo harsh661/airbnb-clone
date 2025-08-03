@@ -1,15 +1,18 @@
-"use client"
+"use client";
 
-import { SafeListing } from "@/app/types"
-import Image from "next/image"
-import React, { FC } from "react"
+import { getCloudinaryBlurURL } from "@/app/libs/utils";
+import { SafeListing } from "@/app/types";
+import Image from "next/image";
+import React, { FC } from "react";
 
 interface ListingHeaderProps {
-  listing: SafeListing
-  location: any
+  listing: SafeListing;
+  location: any;
 }
 
 const ListingHeader: FC<ListingHeaderProps> = ({ listing, location }) => {
+  const blurURL = getCloudinaryBlurURL(listing.imageSrc);
+
   return (
     <div className="phone:px-10 max-w-6xl mx-auto flex flex-col-reverse phone:flex-col">
       <div className="flex flex-col gap-3 py-5 px-5 phone:px-0">
@@ -28,10 +31,12 @@ const ListingHeader: FC<ListingHeaderProps> = ({ listing, location }) => {
           alt={listing.title}
           fill
           className="object-cover"
+          placeholder="blur"
+          blurDataURL={blurURL}
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ListingHeader
+export default ListingHeader;

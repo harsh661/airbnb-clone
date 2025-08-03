@@ -12,6 +12,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { categories } from "@/app/components/navbar/categories/CategoriesContainer";
 import getReservation from "@/app/actions/getReservations";
+import { loadStripe } from "@stripe/stripe-js";
 
 const initialRange = {
   startDate: new Date(),
@@ -57,47 +58,39 @@ const ListingClient: FC<ListingClientProps> = ({
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState(initialRange);
 
-  const fetchReservations = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        `/api/reservations?listingId=${listing.id}`
-      );
-      setLocalReservations(response.data);
-    } catch (error) {
-      toast.error("Failed to fetch reservations");
-    }
-  }, [listing.id]);
+  const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  );
 
-  const onReservation = useCallback(() => {
+  const onReservation = useCallback(async () => {
     if (!currentUser) return loginModal.onOpen();
 
     setLoading(true);
 
-    axios
-      .post("/api/reservations", {
-        totalPrice,
+    try {
+      const response = await axios.post("/api/create-stripe-session", {
+        listingId: listing.id,
         startDate: dateRange.startDate,
         endDate: dateRange.endDate,
-        listingId: listing?.id,
-      })
-      .then(() => {
-        toast.success("Reservation created");
-        fetchReservations();
-      })
-      .catch(() => {
-        toast.error("Something went wrong");
-      })
-      .finally(() => {
-        setLoading(false);
+        price: totalPrice,
+        userId: currentUser.id,
       });
-  }, [
-    totalPrice,
-    dateRange,
-    listing?.id,
-    currentUser,
-    loginModal,
-    fetchReservations,
-  ]);
+
+      const { sessionId } = response.data;
+
+      const stripe = await stripePromise;
+      if (!stripe) throw new Error("Stripe failed to load");
+
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+      if (error) {
+        toast.error(error.message || "Failed to initiate payment");
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("Failed to initiate payment");
+      setLoading(false);
+    }
+  }, [totalPrice, dateRange, listing.id, currentUser, loginModal]);
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {

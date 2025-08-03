@@ -1,17 +1,20 @@
-import Image from "next/image"
-import useGetCountries from "../../hooks/useGetCountries"
-import Link from "next/link"
-import Heart from "@/app/components/inputs/Heart"
-import { SafeListing, SafeUser } from "../../types"
+import Image from "next/image";
+import useGetCountries from "../../hooks/useGetCountries";
+import Link from "next/link";
+import Heart from "@/app/components/inputs/Heart";
+import { SafeListing, SafeUser } from "../../types";
+import { getCloudinaryBlurURL } from "@/app/libs/utils";
 
 interface ListingCardProps {
-  data: SafeListing
-  currentUser: SafeUser | null
+  data: SafeListing;
+  currentUser: SafeUser | null;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({ data, currentUser }) => {
-  const { getCountry } = useGetCountries()
-  const location = getCountry(data.locationValue)
+  const { getCountry } = useGetCountries();
+  const location = getCountry(data.locationValue);
+
+  const blurURL = getCloudinaryBlurURL(data.imageSrc);
 
   return (
     <div className="flex flex-col gap-2 relative">
@@ -23,6 +26,8 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, currentUser }) => {
           width={800}
           height={800}
           className="rounded-xl w-full h-full aspect-square object-cover"
+          placeholder="blur"
+          blurDataURL={blurURL}
         />
       </Link>
 
@@ -35,7 +40,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, currentUser }) => {
         <span className="font-semibold">{`₹ ${data.price}`}</span> night
       </span>
     </div>
-  )
-}
+  );
+};
 
-export default ListingCard
+export default ListingCard;

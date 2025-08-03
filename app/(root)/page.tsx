@@ -1,12 +1,12 @@
-import getCurrentUser from "./actions/getCurrentUser"
-import getListings from "./actions/getListings"
-import ClientOnly from "./components/ClientOnly"
-import ListingCard from "./components/listing/ListingCard"
-import PriceSwitch from "./components/inputs/PriceSwitch"
+import getCurrentUser from "../actions/getCurrentUser";
+import getListings from "../actions/getListings";
+import ClientOnly from "../components/ClientOnly";
+import ListingCard from "../components/listing/ListingCard";
+import PriceSwitch from "../components/inputs/PriceSwitch";
 
-export default async function Home({searchParams}: any) {
-  const listings = await getListings(searchParams)
-  const currentUser = await getCurrentUser()
+export default async function Home({ searchParams }: any) {
+  const listings = await getListings(searchParams);
+  const currentUser = await getCurrentUser();
   return (
     <ClientOnly>
       <main className="pb-20 px-5 phone:px-10 large:px-20">
@@ -22,5 +22,5 @@ export default async function Home({searchParams}: any) {
         </div>
       </main>
     </ClientOnly>
-  )
+  );
 }

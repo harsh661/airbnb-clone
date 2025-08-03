@@ -1,10 +1,10 @@
 import React from "react"
-import ClientOnly from "../components/ClientOnly"
-import ListingCard from "../components/listing/ListingCard"
-import getCurrentUser from "../actions/getCurrentUser"
-import getWishlist from "../actions/getWishlist"
-import Heading from "../components/Heading"
-import BottomNav from "../components/navbar/BottomNav"
+import ClientOnly from "../../components/ClientOnly"
+import ListingCard from "../../components/listing/ListingCard"
+import getCurrentUser from "../../actions/getCurrentUser"
+import getWishlist from "../../actions/getWishlist"
+import Heading from "../../components/Heading"
+import BottomNav from "../../components/navbar/BottomNav"
 
 export default async function Wishlist() {
   const currentUser = await getCurrentUser()

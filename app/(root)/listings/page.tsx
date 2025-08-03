@@ -1,10 +1,10 @@
 import React from "react";
-import ClientOnly from "../components/ClientOnly";
-import ListingCard from "../components/listing/ListingCard";
-import getCurrentUser from "../actions/getCurrentUser";
-import Heading from "../components/Heading";
-import BottomNav from "../components/navbar/BottomNav";
-import getListings from "../actions/getListings";
+import ClientOnly from "../../components/ClientOnly";
+import ListingCard from "../../components/listing/ListingCard";
+import getCurrentUser from "../../actions/getCurrentUser";
+import Heading from "../../components/Heading";
+import BottomNav from "../../components/navbar/BottomNav";
+import getListings from "../../actions/getListings";
 
 export default async function Listings() {
   const currentUser = await getCurrentUser();
